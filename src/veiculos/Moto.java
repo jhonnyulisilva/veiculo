@@ -2,20 +2,18 @@ package veiculos;
 
 import java.util.Scanner;
 
-public class Carro extends veiculo implements IVeiculos {
+public class Moto extends veiculo implements IVeiculos {
 	
 	Scanner sc = new Scanner(System.in);
-	
-	
 
 	private int Tanque;
 	private Double kmPneu;
 	
-	public Carro() {
+	public Moto() {
 		
 	}
 	
-	public Carro(int tanque, Double kmPneu) {
+	public Moto(int tanque, Double kmPneu) {
 		Tanque = tanque;
 		this.kmPneu = kmPneu;
 	}
@@ -36,7 +34,7 @@ public class Carro extends veiculo implements IVeiculos {
 		this.kmPneu = kmPneu;
 	}
 
-	public Carro(String marca, String modelo, String cor, int qtdTanque, String combus) {
+	public Moto(String marca, String modelo, String cor, int qtdTanque, String combus) {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.cor = cor;
@@ -48,9 +46,9 @@ public class Carro extends veiculo implements IVeiculos {
 	@Override
 	public void Ligar() {
 		if (getStatus() == true) {
-			System.out.println("O carro já está ligado!");
+			System.out.println("A Moto já está ligada!");
 		} else {
-			System.out.println("Carro Ligado!");
+			System.out.println("Moto Ligada");
 			setStatus(true);
 			setTanque(getQtdTanque());
 		}
@@ -58,9 +56,9 @@ public class Carro extends veiculo implements IVeiculos {
 	@Override
 	public void Desligar() {
 		if(getStatus() == false) {
-			System.out.println("O carro já está desligado!");
+			System.out.println("A Moto já está desligada!");
 		} else {
-			System.out.println("Carro desligado!");
+			System.out.println("Moto desligada!");
 			setStatus(false);
 		}
 		
@@ -68,31 +66,32 @@ public class Carro extends veiculo implements IVeiculos {
 	@Override
 	public void Abastecer() {
 		if(getStatus() == true ) {
-			System.out.println("O carro está ligado, e necessario desligar para abastecer!");
-		} else if (getTanque() >= getQtdTanque()){
+			System.out.println("A moto está ligada, e necessario desligar para abastecer!");
+		}else {
+			if (getTanque() >= getQtdTanque()) {
 				System.out.println("O tanque já está cheio!");
 			} else {
 				System.out.print("Qual combustivel deseja colocar: (Gasolina/Etanol/Diesel)");
 				String comb = sc.next();
 				comb = comb.toUpperCase();
 				if (!comb.equals(getCombus())) {
-					System.out.println("Esse carro não aceita o combustivel desejavel!");
+					System.out.println("Essa moto não aceita o combustivel desejavel!");
 					Abastecer();
 				} else {
 					AbastecerCombustivel(comb);
 				}
 			}
 		}
+	}
 	
-	
-		public void AbastecerCombustivel(String comb) {
+	public void AbastecerCombustivel(String comb) {
 			System.out.print("Quantos Litros deseja colocar: ");
 			int lts = sc.nextInt();
 			if(lts + Tanque > getQtdTanque()) {
 				System.out.println("O combustivel está a mais do que a quantidade que o Tanque aguenta, deseja continuar? (S/N)");
 				String s = sc.next();
 				if(s.equals("s")) {
-					System.out.println("Você derramou combustivel no seu carro, Parabens!");
+					System.out.println("Você derramou combustivel na sua Moto, Parabens!");
 				} else {
 					System.out.println("Seu tanque tem espaço apenas para " + (getQtdTanque() - Tanque) + "Lts");
 					System.out.println("Deseja abastecer novamente: (S/N)");
@@ -103,7 +102,7 @@ public class Carro extends veiculo implements IVeiculos {
 				}
 			} else {
 				setTanque(Tanque + lts);
-				System.out.println("Foi abastecido " + lts + "Lts de " + getCombus() + "em seu carro!");
+				System.out.println("Foi abastecido " + lts + "Lts de " + getCombus() + "em sua moto!");
 			}
 	}
 	
@@ -142,11 +141,11 @@ public class Carro extends veiculo implements IVeiculos {
 		} else if (getStatus() == true && this.Tanque > 0) {
 			System.out.println("O veiculo está andando!");
 			System.out.println("Você andou 10Km");
-			System.out.println("Seu combustivel está " + (this.Tanque - 10) + "Lts");
-			setTanque(Tanque - 10);
+			System.out.println("Seu combustivel está " + (this.Tanque - 5) + "Lts");
+			setTanque(Tanque - 5);
 			kmPneu += 10;
-			
 		}
+		
 	}
 
 }

@@ -46,7 +46,7 @@ public class veiculo {
 		this.cor = cor;
 	}
 
-	public int getQtdTanque() {
+	public static int getQtdTanque() {
 		return QtdTanque;
 	}
 
